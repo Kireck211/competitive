@@ -1,5 +1,0 @@
-#Ignore all
-*
-#But these files with this extensions
-!*.cpp
-!*.java
