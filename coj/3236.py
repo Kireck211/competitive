@@ -18,21 +18,21 @@ def union_find(parents, num_sets, u, v):
 	vp = find(parents, v)
 	if (up != vp):
 		num_sets[0] -= 1
-		parents[u] = vp
+		parents[up] = vp
 
 def main():
 	cases = int(rdl())
 	while(cases):
 		line = rdls()
 		n, e = int(line[0]), int(line[1])
-		parents = [x for x in range(n+10)]
+		parents = [x for x in range(n)]
 		num_sets = [n]
 		for i in range(e):
 			line = rdls()
-			u, v = int(line[0]), int(line[1])
+			u, v = int(line[0]) - 1, int(line[1]) - 1
 			union_find(parents, num_sets, u, v)
 		num_sets = num_sets[0]
-		result = (num_sets - 1) * (num_sets / 2)
+		result = int(((num_sets-1)*(num_sets))/2)
 		stdout.write('{}\n'.format(result))
 		cases-=1
 
