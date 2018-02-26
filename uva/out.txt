@@ -1,0 +1,9 @@
+union_find0 0
+union_find
+union_find0 0
+union_find
+union_find0 0
+union_find
+union_find0 0
+union_find
+5

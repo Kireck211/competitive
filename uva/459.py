@@ -27,6 +27,7 @@ def toInt(character):
 	return ord(character) - ord('A')
 
 def main():
+	f = open('f.txt','w')
 	tests = rdi()
 	rdl() # Read blank
 	while(tests):
@@ -39,8 +40,11 @@ def main():
 			first, second = toInt(line[0]), toInt(line[1]) # set first and second to cero based integer from read line
 			num_sets = union_find(first, second, sets, num_sets)
 			line = rdl()
-		stdout.write('{}\n\n'.format(num_sets))
 		tests -= 1
+		if (tests > 0):
+			f.write('{}\n\n'.format(num_sets))
+		else:
+			f.write('{}\n'.format(num_sets))
 
 if __name__ == '__main__':
 	main()
