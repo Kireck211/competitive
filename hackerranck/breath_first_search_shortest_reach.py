@@ -1,33 +1,50 @@
 from sys import stdin, stdout
 
+class Node:
+	def __init__(self, index):
+		self.index = index
+		self.visited = False
+		self.cost = 0
+
 def rdl():
 	return stdin.readline().replace('\n', '')
 
 def rds():
 	return rdl().split(' ')
 
+def si():
+	return list(map(lambda x: int(x), rds()))
+
 def main():
 	queries = int(rdl())
 	for q in range(queries):
-		line = rds()
-		nodes, edges = int(line[0]), int(line[1])
-		adj = [[0 for x in range(nodes)] for y in range(nodes)]
-		for e in edges:
-			line = rds()
-			line[0] = int(line[0]) - 1
-			line[1] = int(line[1]) - 1
-			adj[line[0]][line[1]] = 1
-			adj[line[1]][line[0]] = 1
-		start = int(rdl()) - 1
+		line = si()
+		num_nodes, edges = line[0], line[1]
+		queue = []
+		adj = [[] for x in range(num_nodes)]
+		nodes = []
+		for n in range(num_nodes):
+			nodes.append(Node(n))
+		for e in range(edges):
+			line = si()
+			adj[line[0]-1].append(nodes[line[1]-1])
+			adj[line[1]-1].append(nodes[line[0]-1])
+		s = int(rdl()) - 1
+		queue.append(s)
+		while(len(queue)):
+			index = queue.pop(0)
+			for node in adj[index]:
+				if (not node.visited):
+					node.visited = True
+					node.cost = nodes[index].cost + 6
+					queue.append(node.index)
+		for index, node in enumerate(nodes):
+			if (index != s):
+				if (node.cost == 0):
+					stdout.write('-1 ')
+				else:
+					stdout.write(str(node.cost) + ' ')
+		stdout.write('\n')
 
-def bfs(adj, n, s):
-	queue = [s]
-	distances = [10000 for x in range(n)]
-	while(queue):
-		
-
-
-
-
-if '__name__' == '__main__':
+if __name__ == '__main__':
 	main()
