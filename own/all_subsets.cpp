@@ -3,8 +3,8 @@
 
 using namespace std;
 
-void print_subsets(vector<int>& visit, const vector<int>& a,int level, int* n) {
-	if (*n == level) {
+void print_subsets(vector<int>& visit, const vector<int>& a,int level, int& n) {
+	if (n == level) {
 		cout<<"{ ";
 		int i = 0;
 		for(; i < visit.size(); i++)
@@ -30,9 +30,7 @@ int main() {
 			a.push_back(value);
 			visit.push_back(0);
 		}
-		for(int i = 0; i < n; i++)
-			cout<<a[i]<<" ";
-		print_subsets(visit, a, 0, &n);
+		print_subsets(visit, a, 0, n);
 	}
 	return 0;
 }
